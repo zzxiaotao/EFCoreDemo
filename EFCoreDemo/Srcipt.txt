@@ -1,0 +1,4 @@
+Install-Package Microsoft.EntityFrameworkCore.Sqlite ¨CPre
+Install-Package Microsoft.EntityFrameworkCore.Tools ¨CPre
+dotnet ef migrations add MyFirstMigration
+dotnet ef database update
