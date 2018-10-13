@@ -1,6 +1,6 @@
 using System;
 
-namespace test.Models
+namespace EFCoreDemo.Models
 {
     public class ErrorViewModel
     {

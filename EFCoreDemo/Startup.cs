@@ -33,7 +33,7 @@ namespace EFCoreDemo
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            var connection = "Filename=../efcoredemo.db";
+            var connection = "Filename=./efcoredemo.db";
             services.AddDbContext<DataContext>(options => options.UseSqlite(connection));
 
             
