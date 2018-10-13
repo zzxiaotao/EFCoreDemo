@@ -25,6 +25,7 @@ namespace EFCoreDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -32,10 +33,10 @@ namespace EFCoreDemo
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            var connection = "Filename=./efcoredemo.db";
+            var connection = "Filename=../efcoredemo.db";
             services.AddDbContext<DataContext>(options => options.UseSqlite(connection));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            
 
             
         }
@@ -49,7 +50,7 @@ namespace EFCoreDemo
             }
             else
             {
-                app.UseExceptionHandler("/Error");
+                app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
 
@@ -57,7 +58,12 @@ namespace EFCoreDemo
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }
