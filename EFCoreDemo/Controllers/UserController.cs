@@ -2,20 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EFCoreDemo.Base;
 using EFCoreDemo.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EFCoreDemo.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
-        private DataContext _context;
-
         public UserController(DataContext context)
         {
             _context = context;
         }
-        // GET: /<controller>/
         public IActionResult Index()
         {
             return View(_context.Users.ToList());
@@ -37,6 +35,17 @@ namespace EFCoreDemo.Controllers
                 return RedirectToAction("Index");
             }
             return View(registeruser);
+        }
+
+        public IActionResult UserDetail(int Id)
+        {
+            var user = _context.Users.SingleOrDefault(m => m.Id==Id);
+            if (user != null)
+            {
+                //user.
+                //_context.UpdateRange(user);
+            }
+            return View(user);
         }
     }
 }

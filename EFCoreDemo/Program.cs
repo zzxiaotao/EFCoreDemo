@@ -15,6 +15,9 @@ namespace EFCoreDemo
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
+            //在启动的时候吧连接字符串赋值
+            //DataContext.ConnectionString = "{SqlServerStr}|Server=.;Database=Bigcock;User ID=sa;Password=123456;Trusted_Connection=False;";
+
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
